@@ -1,0 +1,42 @@
+{
+    "id": "archive-gm-screen",
+    "title": "Archive GM's Screen",
+    "description": "A customizable, system-aware GM screen for Foundry VTT, providing clean, searchable, and editable reference panels for GMs.",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Shadowdrake Creations",
+            "url": ""
+        }
+    ],
+    "esmodules": [
+        "scripts/main.mjs"
+    ],
+    "styles": [
+        "styles/screen.css"
+    ],
+    "packs": [],
+    "languages": [],
+    "socket": false,
+    "scripts": [],
+    "compatibility": {
+        "minimum": "13.0",
+        "verified": "13.351"
+    },
+    "relationships": {
+        "requires": [
+            {
+                "id": "archive-tab",
+                "type": "module",
+                "manifest": "https://raw.githubusercontent.com/DamondSD/archive-tab/main/module.json",
+                "compatibility": {
+                    "minimum": "0.1.0"
+                }
+            }
+        ]
+    },
+    "url": "https://github.com/DamondSD/archive-gm-screen",
+    "manifest": "https://raw.githubusercontent.com/DamondSD/archive-gm-screen/main/module.json",
+    "download": "https://github.com/DamondSD/archive-gm-screen/releases/download/v1.0.0/archive-gm-screen-v1.0.0.zip",
+    "license": "MIT"
+}

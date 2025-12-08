@@ -1,0 +1,355 @@
+/*
+ * Archive GM's Screen — screen.css
+ *
+ * Theme inspired by Shadowdrake Creations logo:
+ *  - Gold accents (#d4af37 style metallic)
+ *  - Deep black background
+ *  - Clean circular / ring-like motifs
+ *  - Smooth, elegant minimalism
+ */
+
+:root {
+    --ags-bg: #0a0a0a;
+    /* deep black */
+    --ags-panel-bg: #111;
+    /* slightly lighter black */
+    --ags-border-gold: #d4af37;
+    /* gold line / border */
+    --ags-text: #f1e8c7;
+    /* soft gold-ish text */
+    --ags-text-dim: #c8bb91;
+    /* dimmed gold */
+    --ags-gold-glow: 0 0 6px #d4af37;
+
+    --ags-tab-height: 38px;
+    --ags-transition: 0.25s ease;
+}
+
+/* ----------------------------------------- */
+/* ROOT OVERLAY CONTAINER                    */
+/* ----------------------------------------- */
+#archive-gm-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(3px);
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity var(--ags-transition);
+}
+
+#archive-gm-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ----------------------------------------- */
+/* MAIN SCREEN CONTAINER                     */
+/* ----------------------------------------- */
+.ags-screen {
+    width: 85vw;
+    height: 85vh;
+    background: var(--ags-bg);
+    border: 2px solid var(--ags-border-gold);
+    border-radius: 14px;
+    box-shadow: 0 0 15px #000, 0 0 20px #000 inset;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ----------------------------------------- */
+/* HEADER (TABS + SEARCH)                    */
+/* ----------------------------------------- */
+.ags-header {
+    display: flex;
+    align-items: center;
+    background: #0d0d0d;
+    border-bottom: 2px solid var(--ags-border-gold);
+    padding: 0 12px;
+    height: var(--ags-tab-height);
+}
+
+/* Tabs */
+.ags-tabs {
+    display: flex;
+    gap: 8px;
+}
+
+.ags-tab {
+    padding: 6px 12px;
+    color: var(--ags-text-dim);
+    border: 1px solid var(--ags-border-gold);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--ags-transition);
+    user-select: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.ags-tab:hover {
+    color: var(--ags-text);
+    filter: brightness(1.15);
+}
+
+.ags-tab.active {
+    color: var(--ags-text);
+    background: rgba(212, 175, 55, 0.12);
+    box-shadow: var(--ags-gold-glow);
+}
+
+/* Search bar */
+.ags-search {
+    margin-left: auto;
+    padding: 6px 10px;
+    background: #000;
+    color: var(--ags-text);
+    border: 1px solid var(--ags-border-gold);
+    border-radius: 6px;
+    outline: none;
+    width: 180px;
+    transition: var(--ags-transition);
+}
+
+.ags-search:focus {
+    box-shadow: var(--ags-gold-glow);
+}
+
+/* ----------------------------------------- */
+/* PANELS                                    */
+/* ----------------------------------------- */
+.ags-panels {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.ags-panel {
+    background: var(--ags-panel-bg);
+    border: 1px solid var(--ags-border-gold);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    transition: var(--ags-transition);
+    min-height: 120px;
+}
+
+/* Width classes */
+.ags-panel.w-full {
+    width: 100%;
+}
+
+.ags-panel.w-half {
+    width: calc(50% - 10px);
+}
+
+.ags-panel.w-third {
+    width: calc(33.33% - 10px);
+}
+
+/* Header */
+.ags-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    background: #0d0d0d;
+    border-bottom: 1px solid var(--ags-border-gold);
+    font-weight: 600;
+    color: var(--ags-text);
+}
+
+.ags-panel-controls button {
+    background: none;
+    border: none;
+    color: var(--ags-text);
+    cursor: pointer;
+    font-size: 14px;
+    transition: var(--ags-transition);
+}
+
+.ags-panel-controls button:hover {
+    color: #fffbe0;
+    transform: scale(1.2);
+}
+
+/* Body */
+.ags-panel-body {
+    padding: 10px;
+    flex: 1;
+    overflow-y: auto;
+    color: var(--ags-text);
+    font-size: 14px;
+}
+
+/* Collapsed */
+.ags-panel.collapsed .ags-panel-body {
+    display: none;
+}
+
+/* Dragging */
+.ags-panel.dragging {
+    opacity: 0.4;
+    border-style: dashed;
+}
+
+/* --------------------------------------------------------------------------
+   GM SCREEN • FLOATING LAUNCH BUTTON
+   Inspired by GM’s Drawer launcher, but themed for Archive GM's Screen
+   -------------------------------------------------------------------------- */
+.ags-launcher {
+    position: fixed;
+    bottom: 2rem;
+    left: 1rem;
+
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    /* gold tint */
+    border-radius: 6px;
+
+    color: var(--color-text-light-highlight, #fff);
+    /* gold text */
+    font-size: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    padding: 0.35rem 0.6rem;
+    cursor: pointer;
+    z-index: 200;
+
+    opacity: 0.7;
+    transition:
+        background 0.2s ease,
+        opacity 0.2s ease,
+        transform 0.1s ease,
+        border-color 0.2s ease;
+}
+
+.ags-launcher img {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    opacity: 0.9;
+}
+
+.ags-launcher:hover {
+    opacity: 1;
+    background: rgba(255, 215, 100, 0.12);
+    /* warm gold glow */
+    border-color: rgba(212, 175, 55, 0.85);
+}
+
+.ags-launcher:active {
+    transform: scale(0.97);
+}
+
+.ags-width-controls {
+    display: flex;
+    gap: 4px;
+    margin-right: 6px;
+}
+
+.ags-width-btn {
+    background: none;
+    border: 1px solid var(--ags-border-gold);
+    color: var(--ags-text);
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    border-radius: 4px;
+    transition: color 0.15s ease, background 0.15s ease;
+}
+
+.ags-width-btn:hover {
+    background: rgba(212, 175, 55, 0.15);
+}
+
+.ags-add-panel {
+    margin-left: 8px;
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--ags-border-gold);
+    border-radius: 6px;
+    color: var(--ags-text);
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.ags-add-panel:hover {
+    background: rgba(212, 175, 55, 0.15);
+    color: #fff9db;
+}
+
+.ags-panel-title {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.ags-panel-title-edit {
+    display: none;
+    width: 90%;
+    font-size: 14px;
+    padding: 2px 4px;
+    border: 1px solid var(--ags-border-gold);
+    border-radius: 4px;
+    background: #111;
+    color: #d4af37;
+}
+
+.ags-reset-tab {
+    margin-left: 8px;
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--ags-border-gold);
+    border-radius: 6px;
+    color: var(--ags-text);
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.ags-reset-tab:hover {
+    background: rgba(212, 175, 55, 0.15);
+    color: #fff9db;
+}
+
+.app.window-app.dialog {
+    z-index: 999999 !important;
+}
+
+/* Close Button */
+
+.ags-close {
+    margin-left: 8px;
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--ags-border-gold);
+    border-radius: 6px;
+    color: var(--ags-text);
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.ags-close:hover {
+    background: rgba(212, 175, 55, 0.15);
+    color: #fff9db;
+}
